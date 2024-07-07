@@ -1,0 +1,46 @@
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+#include <stdio.h> 
+#include <stdlib.h> 
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+struct Date
+{
+	int day; 
+	int month; 
+	int year; 
+}; 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+void allocate_and_initialize_date(struct Date** ppDate, int init_day, int init_month, int init_year); 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+int main(void)
+{
+	struct Date* pDate = NULL;
+
+	printf("pDate = %p\n", pDate); 
+	allocate_and_initialize_date(&pDate, 12, 3, 2024);
+	printf("pDate = %p\n", pDate); 
+	printf("Date = %d-%d-%d\n", pDate->day, pDate->month, pDate->year);
+
+	free(pDate);
+	pDate = NULL;
+
+	return (EXIT_SUCCESS); 
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void allocate_and_initialize_date(struct Date** ppDate, int init_day, int init_month, int init_year)
+{
+	struct Date* ptrDate = NULL; 
+	
+	ptrDate = (struct Date*)malloc(sizeof(struct Date)); 
+	if (ptrDate == NULL)
+	{
+		puts("Error in allocatnig memory"); 
+		exit(EXIT_FAILURE); 
+	}
+	printf("ptrDate = %p\n", ptrDate); 
+	ptrDate->day = init_day;
+	ptrDate->month = init_month;
+	ptrDate->year = init_year; 
+
+	*ppDate = ptrDate; 
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
