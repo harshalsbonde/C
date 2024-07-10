@@ -1,0 +1,26 @@
+//////////////////////////////////////////////////////////////////////////////
+#include <stdio.h> 
+#include <stdlib.h> 
+//////////////////////////////////////////////////////////////////////////////
+void get_student_data(int* p_roll_number, double* p_attnd, double* p_marks); 
+//////////////////////////////////////////////////////////////////////////////
+int main(void)
+{
+    int roll = 0; 
+    double attnd = 0.0; 
+    double marks = 0.0; 
+
+    printf("ROLL=%d, ATTND=%.2f, MARKS=%.2f\n", roll, attnd, marks); 
+    get_student_data(&roll, &attnd, &marks);
+    printf("ROLL=%d, ATTND=%.2f, MARKS=%.2f\n", roll, attnd, marks); 
+
+    return (0); 
+}
+//////////////////////////////////////////////////////////////////////////////
+void get_student_data(int* p_roll, double* p_attnd, double* p_marks)
+{
+    *p_roll = 10; 
+    *p_attnd = 88.67;
+    *p_marks = 92.56; 
+}
+//////////////////////////////////////////////////////////////////////////////
