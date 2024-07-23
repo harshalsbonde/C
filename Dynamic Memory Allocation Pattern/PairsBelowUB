@@ -1,0 +1,80 @@
+////////////////////////////////////////////////////////////////////////////////////
+#include <stdio.h> 
+#include <stdlib.h> 
+///////////////////////////////////////////////////////////////////////////////////
+/* 
+Problem Statement: 
+Let a be an array of N integers and let 
+U be an upper bound. Print all pairs of 
+distintct integers whose summation is less than U. 
+*/
+///////////////////////////////////////////////////////////////////////////////////
+int main(void)
+{
+    int* p_array = NULL;    /* ptr for storing base addr of array */
+    int N; /* integer variable for storing size of array */
+    int U; /* integer variable for storing the value of upper bound */
+    int i; /* integer variable for indexing in loops */
+    int j; /* integer variable for indexing in loops */
+
+    /* 1. input size of array from end user */
+    printf("Enter size of array:"); 
+    scanf("%d", &N); 
+    if(N <= 0)
+    {
+        puts("Error in allocating memory"); 
+        exit(-1); 
+    }
+
+    /* 2. allocate storage for array of 'N' integers and store the base address 
+        of array in p_array 
+    */
+    p_array = (int*)malloc(N * sizeof(int)); 
+    if(p_array == NULL)
+    {
+        puts("Error in allocating memory"); 
+        exit(-1); 
+    }
+
+    /* 
+        3. Input values for all indices of array. 
+    */
+    for(i = 0; i < N; ++i)
+    {
+        printf("Enter value for element at index %d:", i); 
+        scanf("%d", p_array + i); 
+    }
+
+    /* 
+        4. Input the value for the upper bound from end user
+    */
+    printf("Enter the value for the upper bound:"); 
+    scanf("%d", &U); 
+
+    for(i = 0; i < N-1; ++i)
+    {
+        for(j = i+1; j < N; ++j)
+        {
+            if( (*(p_array + i) + *(p_array + j)) < U )
+            {
+                printf("Pair at indices (%d, %d) which is (%d, %d) is less than %d\n", 
+                        i, 
+                        j, 
+                        *(p_array+i), 
+                        *(p_array + j), 
+                        U
+                    ); 
+            } 
+        }
+    }
+
+    /* 
+        5. Free the storage for array and make pointer NULL
+    */
+    free(p_array); 
+    p_array = NULL; 
+
+    /* 6. Exit from the app */
+    return (0); 
+}
+///////////////////////////////////////////////////////////////////////////////////
